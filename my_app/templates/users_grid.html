@@ -1,0 +1,27 @@
+{% extends  './layout.html' %}
+
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/users_grid.css')}}">
+{% endblock %}
+
+{% block nav %}
+<li class="breadcrumb-item active" aria-current="page">User Profile</li>
+{% endblock %}
+
+{% block body %}
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
+    {% for user in data.users %}
+    <div class="col mb-3">
+      <div class="card">
+        <a class="card-block stretched-link text-decoration-none" href="{{url_for('user.user_profile', user_name=user.name_id)}}">
+            <img src="https://via.placeholder.com/340x120/FFB6C1/000000" alt="Cover" class="card-img-top">
+            <div class="card-body text-center">
+            <img src="{{user.image_url}}" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+            <h5 class="card-title">{{user.name}}</h5>
+            </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
